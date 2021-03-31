@@ -1,11 +1,12 @@
 from django.shortcuts import render
+from django.views import View
+
 from . import serializers
 from .permissions import IsOwnerOrReadOnly
 from django.contrib.auth.models import User
 from rest_framework import generics, permissions
 
 from .models import Post, Comment, Category
-
 
 #User
 class UserList(generics.ListAPIView):
@@ -15,7 +16,6 @@ class UserList(generics.ListAPIView):
 class UserDetail(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = serializers.UserSerializer
-
 
 #Post
 class PostList(generics.ListCreateAPIView):
